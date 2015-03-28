@@ -25,6 +25,7 @@ $(document).ready(function() {
       type: 'GET',
       context: this
     }).done(function(data) {
+      debugger
       $(this).parent().html(data);
     });
   });
@@ -55,7 +56,7 @@ $(document).ready(function() {
   });
 
   $( "body" ).delegate( ".project-delete", "click", function(e) {
-    if (confirm("Delete project?"));
+    var answer = confirm("Delete project?");
     if (answer) {
       e.preventDefault()
       $.ajax({

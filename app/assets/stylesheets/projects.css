@@ -22,11 +22,48 @@ body h1 {
   color: #262628;
 }
 
+li.login {
+  text-align: center;
+  list-style-type: none;
+  margin-bottom: 20px; 
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 30px; 
+  width: 100px;
+  border: 1px solid #6a8f78;
+  background: -webkit-gradient(linear, left top, left bottom, from(#91c8ab), to(#52896a));
+  padding: 3px 3px 0px 3px;
+  border-radius: 4px;
+  box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+}
+
+li.login:hover {
+  border: 1px solid #6a8f78;
+  text-shadow: #78827c 0 1px 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#52896a), to(#91c8ab));
+  color: #fff;
+}
+li.login:active {
+  text-shadow: #78827c 0 1px 0;
+  border: 0px solid #6a8f78;
+  background: -webkit-gradient(linear, left top, left bottom, from(#52896a), to(#91c8ab));
+  color: #fff;
+}
+
+li.login a {
+  text-decoration: none;
+  font-size: 18px;
+  font-family: helvetica, serif;
+  text-shadow: #78827c 0 1px 0;
+  color: #ffffff;
+}
+
 .project {
   background: #ffffff;
   width: 60%;
-  position: relative;
-  margin: 20px auto;
+  margin-left: auto;
+  margin-right: auto;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border: 1px solid #999999;
@@ -121,6 +158,10 @@ input.task-deadline {
   box-shadow: inset 0px 0px 8px #d9d9d9; 
 }
 
+input.task-done {
+  margin-right: 20px;
+}
+
 input[type='submit'] {
   height: 27px; 
   width: 162px;
@@ -167,31 +208,24 @@ form input[type='submit']:active {
 
 ul {
   list-style-type: none;
+  margin-left: -30px;
 }
 
 ul li {
   margin: 10px 5px 10px 5px; 
-
-}
-
-#sortable li {
-  line-height: 15px;
+  line-height: 30px;
   position: relative;
   font-size: 14px;
   border-bottom: 1px dotted #ccc;
+  color: #939393;
+  font-weight: bold;
 }
 
-#sortable  li:last-child {
-  margin: 0px 3px 3px 0px;
+li:last-child {
+  margin: 10px 5px 10px 5px;
   line-height: 15px;
   border-bottom: none;
-}
-
-#sortable li label  {
-
-}
-
-
+}  
 
 li.ui-state-default.ui-sortable-handle {
   width: 718px;
