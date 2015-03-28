@@ -1,0 +1,7 @@
+<h1>Add new project</h1>
+<%= form_for(@project) do |f| %>
+
+  <%= f.text_field :name, placeholder: "Project name" %>
+  <%= f.submit "Add" %>
+
+<% end %>

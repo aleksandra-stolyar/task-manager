@@ -1,0 +1,12 @@
+<li data-task-id="<%= task.id %>">
+  <% if task.done? %>
+    <%= check_box_tag('', set_task_done_path(task), true, disabled: true, class: 'task-done') %>
+    <strike><%= task.name %></strike>
+  <% else %>
+    <%= check_box_tag('', set_task_done_path(task), false, disabled: false, class: 'task-done') %>
+    <%= best_in_place(task, :name, path: project_task_path(task.project, task) ) %>
+  <% end %>  
+  <span class='fordeadline'><%= task.deadline %></span>
+
+  <%= link_to image_tag('delete_sm.png'), project_task_path(task.project, task), data: { confirm: 'Are you sure?' }, class: 'task-delete' %>
+</li>
