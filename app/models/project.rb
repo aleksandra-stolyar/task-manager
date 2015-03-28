@@ -5,4 +5,9 @@ class Project < ActiveRecord::Base
   validates :name, presence: true
 
   scope :ordered, -> { order('created_at ASC') }
+
+  def ordered_tasks
+    tasks.order(:rate)
+  end
+
 end

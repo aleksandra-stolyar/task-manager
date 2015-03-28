@@ -5,13 +5,13 @@
   </div>
 
   <%= form_for([project, Task.new], :html => {:class => 'task-add'}) do |f| %>
-    <%= f.text_field :name, placeholder: "Task name", :html => {:class => 'textbox'}, :remote => true %>
-    <%= f.date_field :deadline%>
-    <%= f.submit "Add Task", :html => {:class => 'submit'} %>
+    <%= f.text_field :name, placeholder: "Task name", :remote => true, class: "task-name"%>
+    <%= f.text_field :deadline, class: "task-deadline"%>
+    <%= f.submit "Add Task" %>
   <% end %>
 
   <ul class="tasks sortable">
-    <% project.tasks.order(:rate).each do |task| %>
+    <% project.ordered_tasks.each do |task| %>
       <%= render partial: 'tasks/task', locals: {task: task} %>
     <% end %>
   </ul>

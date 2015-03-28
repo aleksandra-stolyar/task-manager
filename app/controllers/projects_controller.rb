@@ -42,10 +42,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # flowers = ['orhideya', 'hrizantema', 'pion', 'roza', 'romashka']
-  # flowers.each {|flower| puts(flower) }
-  # flowers.each_with_index {|flower, index| puts("flower: #{flower} has index: #{index}") }
-
   def save_sort
     params[:taskIds].each_with_index do |task_id, index|
       task = Task.find(task_id)

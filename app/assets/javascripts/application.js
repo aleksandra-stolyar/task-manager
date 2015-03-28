@@ -41,7 +41,6 @@ $(document).ready(function() {
   });
 
   $( "body" ).delegate( ".task-add", "submit", function(e) {
-    debugger
     $.ajax({
       type: "POST",
       url: $(this).attr('action'),
@@ -53,7 +52,6 @@ $(document).ready(function() {
       alert(data.responseText);
     });
     return false;
-
   });
 
   $( "body" ).delegate( ".project-delete", "click", function(e) {
@@ -76,7 +74,8 @@ $(document).ready(function() {
       url: $(this).attr('href'),
       type: 'GET',
     }).done(function(data) {
-      $('#projects-container').after(data);
+      $('#projects-container').append(data);
+      $('#projects-container .project:last').find('.task-deadline').datepicker();
     }).error(function(data){
       alert(data.responseText);
     });
@@ -101,18 +100,5 @@ $(document).ready(function() {
   });    
 
   $( ".sortable" ).disableSelection();
-
+  $( ".task-deadline").datepicker();
 });
-
-
-// ---- JS!!!!!! -----
-
-// var taks_ids = []
-
-// this.parent.li.each |li| {
-//   taks_ids.push($(li).data("task-id"))
-// }
-
-// ajax_send_to_server( taks_ids )
-
-
