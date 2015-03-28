@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  http_basic_authenticate_with name: "user", password: "ruby", except: [:index, :show]
   before_action :authenticate_user!
   before_filter :find_project, only: [:show, :edit, :update, :destroy]
 

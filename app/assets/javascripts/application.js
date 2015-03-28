@@ -25,20 +25,22 @@ $(document).ready(function() {
       type: 'GET',
       context: this
     }).done(function(data) {
-      debugger
-      $(this).parent().html(data);
+      $(this).parent().replaceWith(data);
     });
   });
 
   $( "body" ).delegate( ".task-delete", "click", function(e) {
-    e.preventDefault()
-    $.ajax({
-      url: $(this).attr('href'),
-      type: 'DELETE',
-      context: this
-    }).done(function(data) {
-      $(this).parent().remove();
-    });
+    var answer = confirm("Delete task?");
+    if (answer) {
+      e.preventDefault()
+      $.ajax({
+        url: $(this).attr('href'),
+        type: 'DELETE',
+        context: this
+      }).done(function(data) {
+        $(this).parent().remove();
+      });
+    };
   });
 
   $( "body" ).delegate( ".task-add", "submit", function(e) {
@@ -49,6 +51,7 @@ $(document).ready(function() {
       context: this
     }).success(function(data){
       $(this).siblings("ul").append(data);
+      $(this).children(".task-name").val("");
     }).error(function(data){
       alert(data.responseText);
     });
