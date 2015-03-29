@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.ordered
+    @projects = current_user.projects.ordered
   end
 
   def show
@@ -33,11 +33,11 @@ class ProjectsController < ApplicationController
   end
 
   def new_untitled
-    @project = Project.new(name: 'Untitled')
+    @project = current_user.projects.new(name: 'Untitled')
     if @project.save
       render @project
     else
-      render text: @project.errors.full_messages.join, status: :error      
+      render text: @project.errors.full_messages.join("\n"), status: :error      
     end
   end
 

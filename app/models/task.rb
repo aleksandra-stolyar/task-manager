@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :project
 
   validates :name, presence: true
+  validates :deadline, presence: true
 
   def done?
     self.done

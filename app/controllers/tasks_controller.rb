@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     if @task.save
       render @task
     else
-      render text: @task.errors.full_messages.join, status: :error      
+      render text: @task.errors.full_messages.join("\n"), status: :error      
     end
   end
 
@@ -19,15 +19,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @task.update_attributes(task_params)
-        format.html { redirect_to(project_path(@project), :notice => 'Task was successfully updated.') }
-        format.json { render json: @task }
-      else
-        format.html { render :action => "edit" }
-        format.json { render json: @task }
-      end
-    end  
+    @task.update_attributes(task_params)
+    render json: @task
   end
 
   def delete

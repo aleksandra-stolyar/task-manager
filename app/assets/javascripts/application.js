@@ -10,14 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require best_in_place
+
+
+//= require jquery-ui
+//= require best_in_place.jquery-ui
 //= require_tree .
 
 $(document).ready(function() {
-  jQuery(".best_in_place").best_in_place();
 
   $( "body" ).delegate( ".task-done", "change", function(e) {
     $.ajax({
@@ -39,8 +42,9 @@ $(document).ready(function() {
         context: this
       }).done(function(data) {
         $(this).parent().remove();
-      });
+      }); 
     };
+    return false;
   });
 
   $( "body" ).delegate( ".task-add", "submit", function(e) {
@@ -52,6 +56,7 @@ $(document).ready(function() {
     }).success(function(data){
       $(this).siblings("ul").append(data);
       $(this).children(".task-name").val("");
+      $(this).children(".task-deadline").val("");
     }).error(function(data){
       alert(data.responseText);
     });
@@ -69,7 +74,8 @@ $(document).ready(function() {
       }).done(function(data) {
         $(this).parent().parent().remove();
       });
-    };  
+    };
+    return false;      
   });
 
   $( "body" ).delegate( ".project-add", "click", function(e) {
@@ -103,6 +109,8 @@ $(document).ready(function() {
     }
   });    
 
+  jQuery(".best_in_place").best_in_place();
   $( ".sortable" ).disableSelection();
   $( ".task-deadline").datepicker();
+  $.datepicker.setDefaults({dateFormat: 'yy-mm-dd'});
 });

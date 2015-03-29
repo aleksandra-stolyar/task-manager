@@ -22,6 +22,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'login' %><br>
+    <%= link_to "Sign in", new_user_session_path, class: 'sign-up' %>
   </div>
 <% end %>
