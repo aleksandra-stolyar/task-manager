@@ -4,7 +4,7 @@
     <%= link_to image_tag('delete.png'), project_path(project), class: 'project-delete' %>
   </div>
 
-  <%= form_for([project, Task.new], :html => {:class => 'task-add'}) do |f| %>
+  <%= form_for([project, Task.new], namespace: project.id, :html => {:class => 'task-add'}) do |f| %>
     <%= f.text_field :name, placeholder: "Task name", :remote => true, class: "task-name"%>
     <%= f.text_field :deadline, class: "task-deadline"%>
     <%= f.submit "Add Task" %>

@@ -20,6 +20,25 @@
 //= require best_in_place.jquery-ui
 //= require_tree .
 
+function makeSortable(selector){
+  $(selector).sortable({
+    stop: function(){
+      var taskIds = [];
+      $(this).children().each(function(){
+        taskIds.push($(this).data("task-id"))
+      });
+
+      $.ajax({
+        type: "POST",
+        url: "/projects/save_sort",
+        data: {
+          taskIds: taskIds
+        }
+      });
+    }
+  });
+}
+
 $(document).ready(function() {
 
   $( "body" ).delegate( ".task-done", "change", function(e) {
@@ -86,28 +105,14 @@ $(document).ready(function() {
     }).done(function(data) {
       $('#projects-container').append(data);
       $('#projects-container .project:last').find('.task-deadline').datepicker();
+      makeSortable('#projects-container .project:last .sortable')
     }).error(function(data){
       alert(data.responseText);
     });
     return false; 
   });
 
-  $( ".sortable" ).sortable({
-    stop: function(){
-      var taskIds = [];
-      $(this).children().each(function(){
-        taskIds.push($(this).data("task-id"))
-      });
-
-      $.ajax({
-        type: "POST",
-        url: "/projects/save_sort",
-        data: {
-          taskIds: taskIds
-        }
-      });
-    }
-  });    
+  makeSortable(".sortable")
 
   jQuery(".best_in_place").best_in_place();
   $( ".sortable" ).disableSelection();
